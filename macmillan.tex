@@ -38,17 +38,18 @@
 % \makeindex
 
 \doctype{thesis}
-\title{A Compative Study of Gnus and Gnats: The Most Important Paper Ever Written}
-\author{Harvey Finklebaum}
-\degree{Doctor of Philosophy in Zoology}
-\defensedate{April 4, 2013}
-\gradyear{2013}
-\department{Zoology}
+% Title is a work in progress
+\title{MIMIC: Machine Intelligence Mastery Imitation Control}
+\author{Kyle MacMillan}
+\degree{Master of Science in Computational Science and Robotics}
+\defensedate{December XX, 2019}
+\gradyear{2019}
+\department{Computer Science}
 
 % The following commands add a signature line for each person who needs
 % to sign the thesis/dissertation
-\signatureline{Major Professor --- Dimm Whitt, Ph.D., Department of
-  Zoology}
+\signatureline{Major Professor --- Larry Pyeatt, Ph.D., Department of
+  Computer Science}
 
 \signatureline{Graduate Division Representative --- E.\ Nigma, Ph.D.,
   Department of Philosophy}
@@ -59,9 +60,9 @@
 \signatureline{Committee Member --- Gail Force, Ph.D., Department of
   Meteorology }
 
-\signatureline{Head of the Zoology Department --- Earl E. Byrd, Ph.D.}
+\signatureline{Head of the Computer Science Department --- Jeff McGough, Ph.D.}
 
-\signatureline{Dean of Graduate Education --- Raney Daze}
+\signatureline{Dean of Graduate Education --- Maribeth Price}
 
 \begin{document}
 
@@ -77,17 +78,14 @@
 
 
 \begin{abstract}
-I present a fascinating and
-thought provoking study, comparing gnus and gnats.
-The results of the study show conclusively that there
-is no resemblance between the two, whatsoever.
+TBD
 \end{abstract}
 
 %% Uncomment the following if you want acknowledgements
 \begin{acknowledgments}
-  I would like to thank my advisor, Dr.\ Dimm Whitt, for
-  all of the support he has given me. It really was not much,
-  but he did at least stop yelling at me.
+I would like to thank my advisor, Dr.\ Larry Pyeatt for all of the advice and 
+guidance he has given me. Also my wife, who helped in an uncountable number of 
+ways.
 \end{acknowledgments}
 
 \tableofcontents
@@ -133,11 +131,56 @@ is no resemblance between the two, whatsoever.
 
 
 \chapter{Introduction}
-This thesis is the first work ever done in 
-the fascinating study of comparison of gnats to gnus.
-It is groundbreaking.  There literally is nothing
-like it.   However, there have been a few studies
-of other things.
+Up to this point the majority of artificial intelligence in games have been 
+made by humans designing an algorithmic response to player input or game 
+mechanics\cite{NestedIF}. The method of creating an artificial intelligence for 
+a game has improved over time\cite{AdvancedIF} but is still essentially humans 
+developing these systems. There is nothing wrong with humans designing 
+artificial intelligence in games but is there any way to leverage machine 
+learning to create an equivalent, or better, gaming experience?
+
+We design artificial intelligence in games to behave as humans, or in the case 
+of games involving other creatures, how we imagine they would behave. This 
+paper proposes utilization of humans \textit{playing} a game to train an 
+artificial intelligence to play as the human does. This approach could yield 
+many benefits:
+
+\begin{itemize}
+    \item Reduced developer workload
+    \item Reduction in exploitable behavior
+    \item Enhanced immersion
+    \item Greater variety in gameplay
+\end{itemize}
+
+In a first-person shooter scenario developers must design a system that teaches 
+agents how to navigate, attack, resupply, and coordinate. While that list is 
+short, the amount of time required is extensive. They must then tweak behaviors 
+to keep games fun\cite{Fairness}. With a machine learning approach to training 
+artificial intelligence behavior the workload is considerably reduced and the 
+process is largely reusable. 
+
+Humans are adept at finding exploits within a system. Players tend to notice 
+artificial intelligence pathing flaws and use them to their advantage. The 
+reason an agent will behave in an exploitable way is because developers and 
+testers can only test so many possibilities under tight time constraints. A 
+game released to millions of people allows for many more possibilities to be 
+tested. 
+
+That exploitable or erratic behavior leads to a disruption in player immersion. 
+If the agent runs into a wall and struggles to path plan to a player it 
+disrupts the game for the player. Another time this causes problems is with 
+missions/quests to assist someone move from point \textit{A} to \textit{B}. The 
+agent usually does not behave in an intelligent, expected, or human-like 
+behavior. 
+
+In most cases one ``skeleton'' from a game behaves in the same manner as any 
+other in the game because they run a ``skeleton'' agent. The difficulty of the 
+agent can be tweaked, it's abilities can be tweaked, or it's decision making 
+can be tweaked, but all of those require considerable effort on the part of the 
+developer.
+
+This paper poses the question: Can we mimic human behavior enough to 
+distinguish between two players, while being indistinguishable from human-play?
 
 \chapter{Previous Work}
 
