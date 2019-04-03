@@ -209,14 +209,56 @@ focus of all papers is on maximization of score. This paper aims for agent
 scores that are on-par with the humans that trained it.
 
 The paper that most relates as a previous work was for general video game 
-playing\cite{Human-Like}. %TODO Expand on this
+playing\cite{Human-Like}. Their solution approached the problem using a variant 
+of Monte Carlo Tree Search. They also used simplified versions of the games, 
+what is knows as Video Game Definition Language (VGDL). VGDL allows for a much 
+simpler game as can be seen in Table \ref{tab:vgdl_as}. The agent doesn't have 
+to determine if it should open a map, use an item, etc. 
+
+\begin{table}
+  \caption{VGDL Action Space}
+  \begin{center}
+    \begin{tabular}{ | c | c | c | c | c | }
+      \hline
+      \bf Game & \bf Movement & \bf No Action & \bf Other & \bf Total \\ \hline
+      Aliens & 2 & 1 & 1 & \bf 4 \\ \hline
+      PacMan & 4 & 1 & 0 & \bf 5 \\ \hline
+      Zelda & 4 & 1 & 1 & \bf 6 \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \label{tab:vgdl_as}
+\end{table}
+
+This paper will utilize the following actions:
+
 
 
 \chapter{Methods}
+\begin{table}
+  \caption{MIMIC Action Space}
+  \begin{center}
+    \begin{tabular}{ | c | c | }
+      \hline
+      \bf Name & \bf Actions \\ \hline
+      \hline
+      None & 1 \\ \hline
+      Change Thrust & 3 \\ \hline
+      Look & ?? \\ \hline
+      Attack & 1 \\ \hline
+      \bf Total & \bf $>$5 \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \label{tab:mimic_as}
+\end{table}
 
+% Investigate Poisson Distribution
+% Investigate Beta Negative Binomial Distribution
 \section{Training}
-Each player plays $N$ series % 10?
-of scenarios. These scenarios train the agent to play like that person. $J$ 
+Each player flies around for 5 minutes to get used to the game. The player then 
+plays $N$ % 10?
+scenarios. These scenarios train the agent to play like that person. $J$ 
 scenarios are used for training and $N - J$ are used to verify. After 
 the training there are $M$ % 4?
 test scenarios. 
@@ -236,6 +278,8 @@ Users were shown an agent in the top video and two players in the bottom videos.
 Users were then asked to identify which of the two videos were being 
 represented by the agent. The purpose of this was to determine if the agent 
 appropriately represented the player.
+
+
 
 \chapter{Results}
 My research had fabulous results. I will now tell you about
