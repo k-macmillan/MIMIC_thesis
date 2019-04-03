@@ -137,7 +137,8 @@ mechanics\cite{NestedIF}. The method of creating an artificial intelligence for
 a game has improved over time\cite{AdvancedIF} but is still essentially humans 
 developing these systems. There is nothing wrong with humans designing 
 artificial intelligence in games but is there any way to leverage machine 
-learning to create an equivalent, or better, gaming experience?
+learning to create an equivalent, or better, gaming experience that is less 
+prone to progammer error?
 
 We design artificial intelligence in games to behave as humans, or in the case 
 of games involving other creatures, how we imagine they would behave. This 
@@ -168,59 +169,73 @@ tested.
 
 That exploitable or erratic behavior leads to a disruption in player immersion. 
 If the agent runs into a wall and struggles to path plan to a player it 
-disrupts the game for the player. Another time this causes problems is with 
-missions/quests to assist someone move from point \textit{A} to \textit{B}. The 
-agent usually does not behave in an intelligent, expected, or human-like 
-behavior. 
+disrupts the game for the player. Another time this causes problems is when 
+missions/quests ask the player to assist someone moving from point \textit{A} 
+to \textit{B}. The agent usually does not behave in an intelligent, expected, 
+or human-like behavior. 
 
 In most cases one ``skeleton'' from a game behaves in the same manner as any 
 other in the game because they run a ``skeleton'' agent. The difficulty of the 
 agent can be tweaked, it's abilities can be tweaked, or it's decision making 
 can be tweaked, but all of those require considerable effort on the part of the 
-developer.
+engineers.
 
 This paper poses the question: Can we mimic human behavior enough to 
 distinguish between two players, while being indistinguishable from human-play?
 
+
+
 \chapter{Previous Work}
+Reinforcement Learning for games was really brought into light by the DeepMind 
+team's work on Atari games\cite{Atari_DM}. Work in this field has been 
+suprisingly minimal and that is likely due to the difficulty in trainng 
+reinforcement learning agents. On a simple DQN DeepMind trained for 10 million 
+frames and 100 epochs, with epochs corresponding to 30 minutes of training time. 
+Roughly 50 hours of training time on top-of-the-line equipment. DeepMind later 
+released the Starcraft 2 Learning Environment (SC2LE)\cite{SC2LE}. Where it 
+took over 3 weeks to train on an Nvidia GTX-1060. Further progress and more 
+elaborate networks/algorithms required \textit{200 years} of training which 
+took a week on their server farm.
 
+This barrier to entry is quite steep and has kept papers related to 
+reinforcement learning, in games, sparse.
 
-There has been a lot of previous work that is not at all like my work.
-For example,
-% The following if-then-else allows us to get good results with
-% any bibliography/citation style.
-\ifthesiscitations
-\citeN{Kringle} % if we are using the thesiscitations style
-\else
-Kringle~\cite{Kringle} % if we are using a more primitive citation style
-\fi
-showed that apples and goats have almost
-nothing in common, other than both being red.  The major problem with
-Kringle's study is that he used a goat that had been spray painted
-red, and his apple was a golden delicious variety.  Criticism of
-Kringle's methods has been harsh, and so far, no one has been able to
-replicate his results.
+The attempts that have been made were to make the agent equal to or better than 
+humans in \textit{score}. Score is a quantitative way to assess the progress of 
+your agent, and is well suited for that task. Even the more recent papers such 
+as Electronic Arts' SEED\cite{EA_SEED} focused on maximizing score. They stated 
+the average expert human player scored 47, whereas their agent scored 100. The 
+focus of all papers is on maximization of score. This paper aims for agent 
+scores that are on-par with the humans that trained it.
 
-Several researchers have compared trout to
-eagles~\cite{Simmons,Sheppard}.  The consensus that has emerged is
-that they are quite different, and only an idiot would try to eat an
-eagle~\cite{Idiot}.
+The paper that most relates as a previous work was for general video game 
+playing\cite{Human-Like}. %TODO Expand on this
+
 
 \chapter{Methods}
-In this chapter, I will present the methods for my comparison, and
-fill in with a lot of gibberish.  For instance, I will say things like
-``Gnats and Gnus come in twos'' in order to fill space and make my
-thesis seem longer than it really is.  This is a tactic used by some
-people to hide the fact that their research is worthless.  The idea is
-that if the thesis is long enough and boring enough, the thesis
-comittee members will go to sleep every time they try to read it.
 
-Another thing that I may do is to use very long words, such as
-onomatopoeia, for no apparent reason.  By employing voluminous
-instances of obfuscatory and expansive vocables, the lack of
-quintessence of this monograph can be adumbrated from all but
-the most erudite, didactic, and scholarly bibliophiles.
+\section{Training}
+Each player plays $N$ series % 10?
+of scenarios. These scenarios train the agent to play like that person. $J$ 
+scenarios are used for training and $N - J$ are used to verify. After 
+the training there are $M$ % 4?
+test scenarios. 
 
+\section{Validation}
+To verify that the algorithm performed in a human-like manner several 
+Turing-test-like studies were used. 
+
+\subsection{Side-by-side}
+Users were shown $M$ side-by-side test scenarios and were asked to label each 
+as either human or agent. Location of human and agent videos was randomized for 
+each scenario. The goal of this was to see if agents were indistinguishable 
+from humans.
+
+\subsection{Pick a player}
+Users were shown an agent in the top video and two players in the bottom videos. 
+Users were then asked to identify which of the two videos were being 
+represented by the agent. The purpose of this was to determine if the agent 
+appropriately represented the player.
 
 \chapter{Results}
 My research had fabulous results. I will now tell you about
