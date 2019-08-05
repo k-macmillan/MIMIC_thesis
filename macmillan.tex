@@ -245,7 +245,7 @@ to determine if it should open a map, use an item, etc.
       None & 1 \\ \hline
       Thrust & 3 \\ \hline
       % increase, decrease, no change
-      Look & 360 \\ \hline
+      Look & 361 \\ \hline
       Attack & 1 \\ \hline
       \bf Total & \bf 365 \\
       \hline
@@ -281,6 +281,7 @@ four times per second.
       Health \\ \hline
       Speed \\ \hline
       Action \\ \hline
+      Look \\ \hline
       Screen \\ \hline
     \end{tabular}
   \end{center}
@@ -300,10 +301,20 @@ test scenarios.
 
 Table \ref{tab:mimic_as} shows that there are 365 single actions for the agent. 
 Multi-actions are possible such as looking, changing thrust, and firing. This 
-leads to a total action space of: $ 3 \times 360 \times 2 + 1 = 2161$
+leads to a total action space of: $ 3 \times 361 \times 2 + 1 = 2167$
 
-The agent receives the information listed in Table \ref{tab:agent_input}.
-
+As a person plays the game all input is recorded and saved in files to be fed 
+to the agent during training. The agent receives the information listed in 
+Table \ref{tab:agent_input}. \textit{Health}, \textit{speed}, and 
+\textit{action} are stored in a contiguous manner, so there is no need for a 
+time stamp. 
+% I need to nail-down the look mechanics first. Looking is usually on a curve 
+% depending on how far from center the mouse makes it.
+% \textit{Look} utilizes normalized $\sin\(degree\)$ that a player looked at in 
+% that time step. If a player did not move the mouse then the 
+The screen data is recorded in $128 \times 128$ pixels and piped through 
+$N$ convolutions. 
+% Unity screen capture http://answers.unity.com/answers/1296574/view.html
 
 \section{Validation}
 To verify that the algorithm performed in a human-like manner several 
