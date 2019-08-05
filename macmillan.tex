@@ -138,7 +138,7 @@ a game has improved over time\cite{AdvancedIF} but is still essentially humans
 developing these systems. There is nothing wrong with humans designing 
 artificial intelligence in games but is there any way to leverage machine 
 learning to create an equivalent, or better, gaming experience that is less 
-prone to progammer error?
+prone to programmer error?
 
 We design artificial intelligence in games to behave as humans, or in the case 
 of games involving other creatures, how we imagine they would behave. This 
@@ -150,15 +150,15 @@ many benefits:
     \item Reduced developer workload
     \item Reduction in exploitable behavior
     \item Enhanced immersion
-    \item Greater variety in gameplay
+    \item Greater variety in game play
 \end{itemize}
 
 In a first-person shooter scenario developers must design a system that teaches 
 agents how to navigate, attack, resupply, and coordinate. While that list is 
 short, the amount of time required is extensive. They must then tweak behaviors 
-to keep games fun\cite{Fairness}. With a machine learning approach to training 
-artificial intelligence behavior the workload is considerably reduced and the 
-process is largely reusable. 
+to keep games fun\cite{Fairness}. By taking a machine learning approach to 
+training artificial intelligence behavior the workload is considerably reduced 
+and the process is largely reusable. 
 
 Humans are adept at finding exploits within a system. Players tend to notice 
 artificial intelligence pathing flaws and use them to their advantage. The 
@@ -180,19 +180,20 @@ agent can be tweaked, it's abilities can be tweaked, or it's decision making
 can be tweaked, but all of those require considerable effort on the part of the 
 engineers.
 
-This paper poses the question: Can we mimic human behavior enough to 
-distinguish between two players, while being indistinguishable from human-play?
+This paper poses the question: Can we mimic human behavior in a three 
+dimensional space shooter such that it is distinguishable between two players, 
+while being indistinguishable from human-play?
 
 
 
 \chapter{Previous Work}
 Reinforcement Learning for games was really brought into light by the DeepMind 
 team's work on Atari games\cite{Atari_DM}. Work in this field has been 
-suprisingly minimal and that is likely due to the difficulty in trainng 
+surprisingly minimal and that is likely due to the difficulty in training 
 reinforcement learning agents. On a simple DQN DeepMind trained for 10 million 
 frames and 100 epochs, with epochs corresponding to 30 minutes of training time. 
 Roughly 50 hours of training time on top-of-the-line equipment. DeepMind later 
-released the Starcraft 2 Learning Environment (SC2LE)\cite{SC2LE}. Where it 
+released the StarCraft 2 Learning Environment (SC2LE)\cite{SC2LE}. Where it 
 took over 3 weeks to train on an Nvidia GTX-1060. Further progress and more 
 elaborate networks/algorithms required \textit{200 years} of training which 
 took a week on their server farm.
@@ -230,39 +231,73 @@ to determine if it should open a map, use an item, etc.
   \label{tab:vgdl_as}
 \end{table}
 
-This paper will utilize the following actions:
 
 
 
 \chapter{Methods}
 \begin{table}
-  \caption{MIMIC Action Space}
+  \caption{MIMIC Single Action Space}
   \begin{center}
     \begin{tabular}{ | c | c | }
       \hline
       \bf Name & \bf Actions \\ \hline
       \hline
       None & 1 \\ \hline
-      Change Thrust & 3 \\ \hline
-      Look & ?? \\ \hline
+      Thrust & 3 \\ \hline
+      % increase, decrease, no change
+      Look & 360 \\ \hline
       Attack & 1 \\ \hline
-      \bf Total & \bf $>$5 \\
+      \bf Total & \bf 365 \\
       \hline
     \end{tabular}
   \end{center}
   \label{tab:mimic_as}
 \end{table}
 
+
+\section{Game Environment}
+For the purpose of this paper a new game environment was created. The game 
+environment recognizes the actions listed in Table \ref{tab:mimic_as}. Modern 
+games tend to require multiple actions simultaneously including multi-actions 
+such as firing and looking in a direction. Another reason for creating a custom 
+game environment was to ensure all user input is collected at regular intervals.
+
+
+\begin{table}
+  \caption{Agent Input}
+  \begin{center}
+    \begin{tabular}{ | c | }
+      \hline
+      \bf Name \\ \hline
+      \hline
+      Health \\ \hline
+      Speed \\ \hline
+      Action \\ \hline
+      \hline
+    \end{tabular}
+  \end{center}
+  \label{tab:agent_input}
+\end{table}
+
 % Unity FixedUpdate for regular interval readings of actions
 % Investigate Poisson Distribution
 % Investigate Beta Negative Binomial Distribution
 \section{Training}
-Each player flies around for 5 minutes to get used to the game. The player then 
-plays $N$ % 10?
+Each player spends five minutes getting used to the game. The player then plays 
+$N$ % 10?
 scenarios. These scenarios train the agent to play like that person. $J$ 
 scenarios are used for training and $N - J$ are used to verify. After 
 the training there are $M$ % 4?
 test scenarios. 
+
+Table \ref{tab:mimic_as} shows that there are 365 single actions for the agent. 
+Multi-actions are possible such as looking, changing thrust, and firing. This 
+leads to a total action space of:
+
+$$ 3 \times 360 \times 2 + 1 = 2161$$
+
+The agent receives the information listed in Table \ref{tab:agent_input}.
+
 
 \section{Validation}
 To verify that the algorithm performed in a human-like manner several 
