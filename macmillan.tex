@@ -256,24 +256,32 @@ to determine if it should open a map, use an item, etc.
 
 
 \section{Game Environment}
-For the purpose of this paper a new game environment was created. The game 
-environment recognizes the actions listed in Table \ref{tab:mimic_as}. Modern 
-games tend to require multiple actions simultaneously including multi-actions 
-such as firing and looking in a direction. Another reason for creating a custom 
-game environment was to ensure all user input is collected at regular intervals.
+For the purpose of this paper a new game environment was created. A custom 
+environment was created because there is a need to control certain aspects of 
+the game such as models, resolution, data sample rate, physics, and actions. 
 
+The game environment recognizes the actions listed in Table \ref{tab:mimic_as}. 
+Modern games tend to require multiple actions simultaneously such as firing and 
+looking in a direction and this environment allows for that as well. To make 
+training simpler user input is collected at predetermined, regular interval of 
+50 Hz. % https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html
+The environment uses classical mechanics, meaning objects in motion will stay in 
+motion. Enemy ships are red and their projectiles are red; friendly ships and 
+projectiles are green. Engine control has \textit{forward}, \textit{reverse}, 
+or \textit{no change}. Forward and reverse apply acceleration to the vessel 
+while no change will maintain the current speed due to the physics method 
+chosen. Vessels require five shots to be destroyed and vessels can shoot up to 
+four times per second.
 
 \begin{table}
   \caption{Agent Input}
   \begin{center}
     \begin{tabular}{ | c | }
       \hline
-      \bf Name \\ \hline
-      \hline
       Health \\ \hline
       Speed \\ \hline
       Action \\ \hline
-      \hline
+      Screen \\ \hline
     \end{tabular}
   \end{center}
   \label{tab:agent_input}
@@ -292,9 +300,7 @@ test scenarios.
 
 Table \ref{tab:mimic_as} shows that there are 365 single actions for the agent. 
 Multi-actions are possible such as looking, changing thrust, and firing. This 
-leads to a total action space of:
-
-$$ 3 \times 360 \times 2 + 1 = 2161$$
+leads to a total action space of: $ 3 \times 360 \times 2 + 1 = 2161$
 
 The agent receives the information listed in Table \ref{tab:agent_input}.
 
